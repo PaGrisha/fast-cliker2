@@ -57,13 +57,15 @@ for i in range(num_cards):
     cards.append(new_card)
     x = x + 100
 
-d = 0
+points = 0
 wait = 0
 start_time = time.time()
 cur_time = start_time
-schet = int()
-schet_text = Label(320, 0, 50, 50, back)
-schet_text.set_text('счёт', 40, DARK_BLUE)
+schet_text = Label(380, 0, 50, 50, back)
+schetchick = Label(430, 55, 50, 40, back)
+schetchick.set_text('0', 40, DARK_BLUE)
+schetchick.draw()
+schet_text.set_text('Счёт:', 40, DARK_BLUE)
 schet_text.draw()
 time_text = Label(0, 0, 50, 50, back)
 time_text.set_text('Время:', 40, DARK_BLUE)
@@ -83,6 +85,7 @@ while True:
         for i in range(num_cards):
             if (i + 1) == click:
                 cards[i].draw(10, 40)
+                cards[i].outline(DARK_BLUE, 10)
             else:
                 cards[i].fill()
                 cards[i].outline(DARK_BLUE, 10)
@@ -95,14 +98,13 @@ while True:
                 if cards[i].collidepoint(x, y):
                     if i + 1 == click:
                         cards[i].color(GREEN)
-                        d += 1
+                        points += 1
+
                     else:
                         cards[i].color(RED)
-                        d -= 1
-                    if d == 5:
-                        break
-
+                        points -= 1
                     cards[i].fill()
-
+                    schetchick.set_text(str(points), 40, DARK_BLUE)
+                    schetchick.draw()
     pygame.display.update()
     clock.tick(40)
