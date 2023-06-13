@@ -85,6 +85,7 @@ while True:
                 cards[i].draw(10, 40)
             else:
                 cards[i].fill()
+                cards[i].outline(DARK_BLUE, 10)
     else:
         wait -= 1
     for event in pygame.event.get():
